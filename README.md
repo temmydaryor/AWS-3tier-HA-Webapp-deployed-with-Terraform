@@ -152,7 +152,7 @@ Spot-checking the AWS Console to confirm Terraform built exactly what it claimed
 
 | Resource | Screenshot |
 |---|---|
-| VPC | ![](screenshots/15-vpc-created.png) |
+| VPC | 1 |
 | Subnets (2 public, 2 private) | ![](screenshots/16-subnets-created.png) |
 | Route tables | ![](screenshots/17-route-tables-created.png) |
 | Public route table → Internet Gateway | ![](screenshots/18-route-table-public-routes.png) |
