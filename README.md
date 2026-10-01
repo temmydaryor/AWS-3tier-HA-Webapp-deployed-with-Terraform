@@ -26,7 +26,6 @@ Terraform instead of manual console clicks.
 - [Results](#results)
 - [Challenges & How They Were Solved](#challenges--how-they-were-solved)
 - [Teardown](#teardown)
-- [Security Note Before You Push This to GitHub](#security-note-before-you-push-this-to-github)
 - [Repo Structure](#repo-structure)
 
 ---
@@ -84,6 +83,7 @@ down the line.
 | | |
 |---|---|
 | ![](screenshots/01-terraform-version-outdated.png) | Terraform flagging itself as out of date (v1.14.9), with the current version (1.16.0) noted directly in the CLI output. |
+ | Terraform flagging itself as out of date (v1.14.9), with the current version (1.16.0) noted directly in the CLI output. |
 | ![](screenshots/02-terraform-upgrade-chocolatey.png) | Upgrading via `choco upgrade terraform` — Chocolatey pulls, verifies, and installs v1.16.0 in one step. |
 | ![](screenshots/03-terraform-version-updated.png) | Confirmed on v1.16.0, with the `hashicorp/aws` provider resolved at v5.100.0. |
 
