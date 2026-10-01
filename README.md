@@ -83,14 +83,14 @@ down the line.
 | | |
 |---|---|
 |(https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/ca877d3dee8b2e9a2f9a2afeec73b67b39883264/Screenshots/01-terraform-version-outdated.png) | Terraform flagging itself as out of date (v1.14.9), with the current version (1.16.0) noted directly in the CLI output. |
-| Screenshots/02-terraform-upgrade-chocolatey.png| Upgrading via `choco upgrade terraform` — Chocolatey pulls, verifies, and installs v1.16.0 in one step. |
-| ![](screenshots/03-terraform-version-updated.png) | Confirmed on v1.16.0, with the `hashicorp/aws` provider resolved at v5.100.0. |
+| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/b9ba4da88831e7aa5315fde6f10ed94ee6fc3b49/Screenshots/02-terraform-upgrade-chocolatey.png | Upgrading via `choco upgrade terraform` — Chocolatey pulls, verifies, and installs v1.16.0 in one step. |
+| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/de3714252698f3a8c7b4a6b12627056d84aeb2e2/Screenshots/03-terraform-version-updated.png | Confirmed on v1.16.0, with the `hashicorp/aws` provider resolved at v5.100.0. |
 
 **2. Project structure**
 Modularized into `vpc`, `security_groups`, `alb`, `asg`, `rds`, and `cdn` — each
 module owns one layer of the architecture, wired together from a root `main.tf`.
 
-![](screenshots/04-vscode-project-structure.png)
+![]https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/de3714252698f3a8c7b4a6b12627056d84aeb2e2/Screenshots/04-vscode-project-structure.png
 *The full module layout in VS Code — six modules, each with its own `main.tf`,
 `variables.tf`, and `outputs.tf`.*
 
@@ -98,7 +98,7 @@ module owns one layer of the architecture, wired together from a root `main.tf`.
 
 | | |
 |---|---|
-| ![](screenshots/05-terraform-init-success.png) | `terraform init` — all six modules and the `hashicorp/aws` provider initialize cleanly. |
+| ![] https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/de3714252698f3a8c7b4a6b12627056d84aeb2e2/Screenshots/05-terraform-init-success.png| `terraform init` — all six modules and the `hashicorp/aws` provider initialize cleanly. |
 | ![](screenshots/06-terraform-validate-success.png) | `terraform validate` — configuration syntax confirmed valid before planning. |
 | ![](screenshots/07-terraform-plan-output.png) | `terraform plan` — 31 resources queued to add, 0 to change, 0 to destroy. |
 | ![](screenshots/08-terraform-apply-confirm.png) | `terraform apply` at the confirmation prompt, about to provision the full stack. |
