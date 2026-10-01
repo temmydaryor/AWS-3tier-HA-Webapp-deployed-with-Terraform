@@ -118,7 +118,7 @@ than code bugs:
   that don't exist there. Fixed by adding `aws_region = "ca-west-1"` and
   `azs = ["ca-west-1a", "ca-west-1b"]`.
 
-https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/10-terraform-apply-error-s3-az.png
+https://tinyurl.com/terraform-apply-error
 *Both errors as they actually appeared — `MissingNamespaceHeader` on the S3
 bucket and `InvalidParameterValue` on the subnet Availability Zones.*
 
