@@ -5,8 +5,8 @@
 ![Status](https://img.shields.io/badge/Status-Deployed%20%26%20Load--Tested-success)
 
 A fully reproducible, Infrastructure-as-Code rebuild of a highly available 3-tier AWS
-architecture — VPC, Auto Scaling, Application Load Balancer, Multi-AZ RDS, and a
-CloudFront/S3 content delivery layer — deployed end-to-end with Terraform, then
+architecture, VPC, Auto Scaling, Application Load Balancer, Multi-AZ RDS, and a
+CloudFront/S3 content delivery layer, deployed end-to-end with Terraform, then
 load-tested with real traffic to trigger and confirm actual scale-out and scale-in
 behavior.
 
@@ -60,7 +60,7 @@ flowchart TB
 
 ## Tech Stack
 
-| Layer | Services / Tools |
+|Layer |Services / Tools |
 |---|---|
 | IaC | Terraform v1.16.0, AWS provider v5.100.0 |
 | Compute | Amazon EC2, Auto Scaling Groups, Launch Templates |
@@ -82,7 +82,7 @@ down the line.
 
 | | |
 |---|---|
-| ![](screenshots/01-terraform-version-outdated.png) | Terraform flagging itself as out of date (v1.14.9), with the current version (1.16.0) noted directly in the CLI output. |
+|(https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/ca877d3dee8b2e9a2f9a2afeec73b67b39883264/Screenshots/01-terraform-version-outdated.png) | Terraform flagging itself as out of date (v1.14.9), with the current version (1.16.0) noted directly in the CLI output. |
  | Terraform flagging itself as out of date (v1.14.9), with the current version (1.16.0) noted directly in the CLI output. |
 | ![](screenshots/02-terraform-upgrade-chocolatey.png) | Upgrading via `choco upgrade terraform` — Chocolatey pulls, verifies, and installs v1.16.0 in one step. |
 | ![](screenshots/03-terraform-version-updated.png) | Confirmed on v1.16.0, with the `hashicorp/aws` provider resolved at v5.100.0. |
