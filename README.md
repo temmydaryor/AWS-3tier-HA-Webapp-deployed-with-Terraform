@@ -82,9 +82,9 @@ down the line.
 
 | | |
 |---|---|
-|(https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/ca877d3dee8b2e9a2f9a2afeec73b67b39883264/Screenshots/01-terraform-version-outdated.png) | Terraform flagging itself as out of date (v1.14.9), with the current version (1.16.0) noted directly in the CLI output. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/b9ba4da88831e7aa5315fde6f10ed94ee6fc3b49/Screenshots/02-terraform-upgrade-chocolatey.png | Upgrading via `choco upgrade terraform` — Chocolatey pulls, verifies, and installs v1.16.0 in one step. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/de3714252698f3a8c7b4a6b12627056d84aeb2e2/Screenshots/03-terraform-version-updated.png | Confirmed on v1.16.0, with the `hashicorp/aws` provider resolved at v5.100.0. |
+|https://tinyurl.com/terraform-version-outdated | Terraform flagging itself as out of date (v1.14.9), with the current version (1.16.0) noted directly in the CLI output. |
+|https://tinyurl.com/terraform-upgrade-chocolatey | Upgrading via `choco upgrade terraform` — Chocolatey pulls, verifies, and installs v1.16.0 in one step. |
+|https://tinyurl.com/terraform-version-updated | Confirmed on v1.16.0, with the `hashicorp/aws` provider resolved at v5.100.0. |
 
 **2. Project structure**
 Modularized into `vpc`, `security_groups`, `alb`, `asg`, `rds`, and `cdn` — each
