@@ -90,19 +90,19 @@ down the line.
 Modularized into `vpc`, `security_groups`, `alb`, `asg`, `rds`, and `cdn` — each
 module owns one layer of the architecture, wired together from a root `main.tf`.
 
-!https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/de3714252698f3a8c7b4a6b12627056d84aeb2e2/Screenshots/04-vscode-project-structure.png
-*The full module layout in VS Code — six modules, each with its own `main.tf`,
+https://tinyurl.com/vscode-project-structure
+*The full module layout in VS Code - six modules, each with its own `main.tf`,
 `variables.tf`, and `outputs.tf`.*
 
 **3. Init → Validate → Plan → Apply**
 
 | | |
 |---|---|
-|https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/de3714252698f3a8c7b4a6b12627056d84aeb2e2/Screenshots/05-terraform-init-success.png| `terraform init` — all six modules and the `hashicorp/aws` provider initialize cleanly. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/06-terraform-validate-success.png | `terraform validate` — configuration syntax confirmed valid before planning. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/07-terraform-plan-output.png | `terraform plan` — 31 resources queued to add, 0 to change, 0 to destroy. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/08-terraform-apply-confirm.png | `terraform apply` at the confirmation prompt, about to provision the full stack. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/09-terraform-apply-progress.png | Resources creating in real time — CloudFront origin access control, VPC, S3 bucket, and NAT Gateway EIP all in flight. |
+|https://tinyurl.com/terraform-init-success | `terraform init` — all six modules and the `hashicorp/aws` provider initialize cleanly. |
+| https://tinyurl.com/terraform-validate-success | `terraform validate` — configuration syntax confirmed valid before planning. |
+| https://tinyurl.com/terraform-plan-output | `terraform plan` — 31 resources queued to add, 0 to change, 0 to destroy. |
+| https://tinyurl.com/terraform-apply-confirm | `terraform apply` at the confirmation prompt, about to provision the full stack. |
+| https://tinyurl.com/terraform-apply-progress | Resources creating in real time — CloudFront origin access control, VPC, S3 bucket, and NAT Gateway EIP all in flight. |
 
 **4. Real errors hit during apply — and the fixes**
 
@@ -124,7 +124,7 @@ bucket and `InvalidParameterValue` on the subnet Availability Zones.*
 
 **5. Clean apply and outputs**
 
-https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/11-terraform-apply-complete-outputs.png
+https://tinyurl.com/terraform-apply-complete
 *`Apply complete! Resources: 33 added, 0 changed, 0 destroyed.` with all four
 outputs populated: ALB DNS name, CloudFront domain, RDS endpoint, and VPC ID.*
 
@@ -136,10 +136,10 @@ instance.
 
 | | |
 |---|---|
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/12-alb-response-instance-1.png | Response from the first instance (`10-0-11-38`). |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/13-alb-response-instance-2.png | Same URL, second request — response from a different instance (`10-0-12-48`). |
+| https://tinyurl.com/alb-response-instance-1 | Response from the first instance (`10-0-11-38`). |
+| https://tinyurl.com/alb-response-instance-2 | Same URL, second request — response from a different instance (`10-0-12-48`). |
 
-https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/14-terraform-apply-full-resource-log.png
+https://tinyurl.com/terraform-apply-full-resource
 *The complete apply log — every resource Terraform provisioned, in order,
 across all six modules.*
 
@@ -151,33 +151,33 @@ Spot-checking the AWS Console to confirm Terraform built exactly what it claimed
 
 | Resource | Screenshot |
 |---|---|
-| VPC | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/15-vpc-created.png |
-| Subnets (2 public, 2 private) | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/16-subnets-created.png |
-| Route tables | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/17-route-tables-created.png |
-| Public route table → Internet Gateway | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/18-route-table-public-routes.png |
-| Public subnet associations | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/19-route-table-public-subnet-associations.png |
-| Private route table → NAT Gateway | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/20-route-table-private-routes.png |
-| Private subnet associations | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/21-route-table-private-subnet-associations.png |
-| Internet Gateway, attached | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/22-internet-gateway-created.png |
-| NAT Gateway, available | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/23-nat-gateway-created.png |
-| Initial 2 EC2 instances, running | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/24-ec2-instances-initial-2.png |
-| Elastic IP reserved for the NAT Gateway | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/25-elastic-ip-for-nat.png |
-| Application Load Balancer, active | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/26-load-balancer-created.png |
-| Target group, linked to the ALB | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/27-target-group-created.png |
-| Auto Scaling Group, at desired capacity | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/28-auto-scaling-group-created.png |
-| Target-tracking dynamic scaling policy | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/29-dynamic-scaling-policy-target-tracking.png|
-| Both instances attached to the ASG, healthy | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/30-asg-instances-attached.png |
-| CloudFront distribution, enabled | https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/31-cloudfront-distribution-created.png |
+| VPC | https://tinyurl.com/vpc-terraform |
+| Subnets (2 public, 2 private) | https://tinyurl.com/subnets-creation |
+| Route tables | https://tinyurl.com/route-tables |
+| Public route table → Internet Gateway | https://tinyurl.com/route-table-public-routes |
+| Public subnet associations | https://tinyurl.com/public-subnet-associations |
+| Private route table → NAT Gateway | https://tinyurl.com/route-table-private-route |
+| Private subnet associations | https://tinyurl.com/private-subnet-associations |
+| Internet Gateway, attached | https://tinyurl.com/internet-gateway |
+| NAT Gateway, available | https://tinyurl.com/nat-gateway |
+| Initial 2 EC2 instances, running | https://tinyurl.com/ec2-instances-running |
+| Elastic IP reserved for the NAT Gateway | https://tinyurl.com/elastic-ip-for-nat |
+| Application Load Balancer, active | https://tinyurl.com/load-balancer-created |
+| Target group, linked to the ALB | https://tinyurl.com/target-group-created |
+| Auto Scaling Group, at desired capacity | https://tinyurl.com/auto-scaling-group |
+| Target-tracking dynamic scaling policy | https://tinyurl.com/dynamic-scaling-policy |
+| Both instances attached to the ASG, healthy | https://tinyurl.com/asg-instances-attached |
+| CloudFront distribution, enabled | https://tinyurl.com/CDN-created |
 
 **CDN verification** — CloudFront domain `d2uosezalkh73t.cloudfront.net` serving
 static assets directly from the (fully private) S3 origin:
 
 | | |
 |---|---|
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/32-cloudfront-static-asset-beach.png | `beach.jpg` served through CloudFront. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/33-cloudfront-static-asset-coffee.png | `coffee.jpg` served through CloudFront — confirms the first result wasn't a one-off. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/34-cloudfront-full-html-page.png | A full HTML page with an embedded image, served entirely from the CDN. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/35-alb-curl-test-200-ok.png | `curl` against the ALB's DNS name returning `200 OK` with the expected response body. |
+| https://tinyurl.com/static-asset-beach | `beach.jpg` served through CloudFront. |
+| https://tinyurl.com/static-asset-coffee | `coffee.jpg` served through CloudFront — confirms the first result wasn't a one-off. |
+| https://tinyurl.com/cloudfront-full-html-page | A full HTML page with an embedded image, served entirely from the CDN. |
+| https://tinyurl.com/alb-curl-test-200 | `curl` against the ALB's DNS name returning `200 OK` with the expected response body. |
 
 ---
 
@@ -187,21 +187,21 @@ The part that actually proves the architecture, not just that it deployed.
 
 **1. Install the load testing tool on the EC2 instance**
 
-https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/36-installing-hey-load-test-tool.png
+https://tinyurl.com/installing-hey-load-test-too
 *Installing `hey` via `go install` directly on the instance, so the load test
 runs from inside the same network as the ALB — no internet round-trip skewing
 the results.*
 
 **2. Run the load test**
 
-https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/37-hey-load-test-results.png
+https://tinyurl.com/hey-load-test-results
 *`hey -z 5m -c 50` against the ALB — 5 minutes of sustained load at 50
 concurrent connections, completing at **10,714 requests/sec** with a 0.0151s
 average response time.*
 
 **3. CPU spikes, alarm triggers**
 
-https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/38-cloudwatch-cpu-spike-66-percent.png
+https://tinyurl.com/cloudwatch-cpu-spike
 *CloudWatch shows CPUUtilization climbing to 66.9%, crossing the
 target-tracking alarm's threshold — this is what actually triggers a scale-out
 action, not just the load test running.*
@@ -210,14 +210,14 @@ action, not just the load test running.*
 
 | | |
 |---|---|
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/39-asg-scale-out-triggered-2-to-3.png | ASG Activity History: alarm triggers, desired capacity moves from 2 to 3, new instance launches and begins warm-up. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/40-asg-third-instance-created.png | Third instance launch completes successfully — group back to "at desired capacity" with 3/3 healthy. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/41-asg-instance-management-3-instances.png | Instance management view confirming all 3 instances `InService` and `Healthy`. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/42-ec2-instances-scaled-to-3.png | EC2 console independently confirms 3 running instances. |
+| https://tinyurl.com/asg-scale-out-triggered | ASG Activity History: alarm triggers, desired capacity moves from 2 to 3, new instance launches and begins warm-up. |
+| https://tinyurl.com/asg-third-instance-created | Third instance launch completes successfully — group back to "at desired capacity" with 3/3 healthy. |
+| https://tinyurl.com/asg-instance-management | Instance management view confirming all 3 instances `InService` and `Healthy`. |
+| https://tinyurl.com/ec2-instances-scaled-to-3 | EC2 console independently confirms 3 running instances. |
 
 **5. Load subsides, CPU drops, alarm reverses**
 
-https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/43-cloudwatch-cpu-dropped-6-percent.png
+https://tinyurl.com/cloudwatch-cpu-dropped
 *CPUUtilization back down to 6.6% once the load test finishes — this is what
 triggers the scale-in policy to kick in.*
 
@@ -225,9 +225,9 @@ triggers the scale-in policy to kick in.*
 
 | | |
 |---|---|
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/44-asg-scale-in-triggered-3-to-2.png | ASG Activity History: scale-in triggered, one instance selected for termination and marked "Connection draining in progress — Waiting For ELB Connection Draining." |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/45-asg-instance-terminating.png | Instance management view mid-drain — one instance `Terminating` while the other two remain `Healthy`. |
-| https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/46-asg-back-to-baseline-2-instances.png | Termination completes successfully — group back to 2/2 healthy, its original baseline. |
+| https://tinyurl.com/asg-scale-in-triggered-3-to-2 | ASG Activity History: scale-in triggered, one instance selected for termination and marked "Connection draining in progress — Waiting For ELB Connection Draining." |
+| https://tinyurl.com/asg-instance-terminating | Instance management view mid-drain — one instance `Terminating` while the other two remain `Healthy`. |
+| https://tinyurl.com/asg-back-to-baseline | Termination completes successfully — group back to 2/2 healthy, its original baseline. |
 
 This confirms the scale-in wasn't just "kill an instance" — it waited for
 in-flight connections to finish draining first, meaning zero dropped requests
@@ -278,7 +278,7 @@ result actually crossing the scaling threshold.
 terraform destroy
 ```
 
-https://github.com/temmydaryor/AWS-3tier-HA-Webapp-deployed-with-Terraform/blob/5b09f14049531c39b1ff43b793d7a2234bf57fce/Screenshots/47-terraform-destroy-complete.png
+https://tinyurl.com/terraform-destroy
 *`Destroy complete! Resources: 31 destroyed.` — every resource removed in
 correct dependency order, no orphaned infrastructure left behind.*
 
